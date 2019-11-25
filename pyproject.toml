@@ -4,6 +4,7 @@ build-backend = "flit.buildapi"
 
 [tool.flit.metadata]
 module = "ipx800"
+dist-name = "gce-ipx800"
 author = "Marc-Aurèle Brothier"
 author-email = "m@brothier.org"
 maintainer = "Marc-Aurèle Brothier"
