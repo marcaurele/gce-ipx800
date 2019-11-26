@@ -1,5 +1,7 @@
 # py-ipx800
 
+![](https://github.com/marcaurele/py-ipx800/workflows/Build%20status/badge.svg)
+
 py-ipx800 is a Python3 Library for controlling GCE-Electronics IPX800 V4 via its public API.
 
 ## Sample Usage
