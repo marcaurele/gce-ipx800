@@ -9,7 +9,7 @@ author = "Marc-Aurèle Brothier"
 author-email = "m@brothier.org"
 maintainer = "Marc-Aurèle Brothier"
 home-page = "https://github.com/marcaurele/py-ipx800"
-description-file = "README.md"
+description-file = "README.rst"
 keywords = "ipx800, GCE-Electronics, GCE, home-automation"
 requires = ["requests"]
 requires-python = ">=3.5"
