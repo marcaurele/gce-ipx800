@@ -27,7 +27,7 @@ IPX800 features implemented
 Installation
 ------------
 
-::
+:: code-block:: console
 
     pip install gce-ipx800
 
@@ -36,7 +36,7 @@ Usage
 
 .. note:: The default API key of the device is `apikey`.
 
-::
+:: code-block:: python
 
     from ipx800 import ipx800, relay
 
