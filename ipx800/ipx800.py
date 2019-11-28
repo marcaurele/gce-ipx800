@@ -8,7 +8,7 @@ class ApiError(Exception):
         super().__init__(*args, **kwargs)
 
 
-class ipx800:
+class IPX800:
     def __init__(self, url, api_key="apikey"):
         self.url = url
         self._api_url = f"{url}/api/xdevices.json"
@@ -29,7 +29,7 @@ class ipx800:
             raise ApiError()
 
 
-class relay(ipx800):
+class Relay(IPX800):
     def __init__(self, ipx, relay_id):
         super().__init__(ipx.url, ipx.api_key)
         self.id = relay_id
