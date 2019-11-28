@@ -5,4 +5,4 @@
 from ipx800.ipx800 import ApiError, ipx800, relay  # noqa
 
 
-__version__ = "0.1"
+__version__ = "0.2"
