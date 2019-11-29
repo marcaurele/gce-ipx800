@@ -4,7 +4,7 @@ import json
 from unittest import TestCase
 from unittest.mock import Mock, call, patch
 
-from ipx800 import ApiError, ipx800, relay
+from ipx800 import ApiError, ipx800
 
 
 class IPX800Test(TestCase):
@@ -44,7 +44,7 @@ class IPX800Test(TestCase):
         )
 
         ipx = ipx800("http://192.0.2.4")
-        r999 = relay(ipx, 999)
+        r999 = ipx.relays[998]
         with self.assertRaises(ApiError):
             r999.status
         self.assertIn(
