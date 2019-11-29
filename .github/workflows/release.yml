@@ -1,0 +1,27 @@
+name: Upload python package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flit pygments
+    - name: Publish to pypi
+      env:
+        FLIT_USERNAME: __token__
+        FLIT_PASSWORD: ${{secrets.PYPI_TOKEN}}
+      run: |
+        flit publish
