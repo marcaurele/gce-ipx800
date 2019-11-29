@@ -38,11 +38,11 @@ Usage
 
 .. code-block:: python
 
-    from ipx800 import ipx800, relay
+    from ipx800 import ipx800
 
     ipx = ipx800("http://your-device-ip", "apikey")
 
-    r4 = relay(ipx, 4)
+    r4 = ipx.relays[3]
 
     r4.status  # => return a Boolean
 
