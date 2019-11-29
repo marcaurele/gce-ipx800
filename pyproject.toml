@@ -25,4 +25,4 @@ classifiers = ["Topic :: Home Automation",
 
 [tool.black]
 target-version = ["py36", "py37", "py38"]
-
+line-length = 79

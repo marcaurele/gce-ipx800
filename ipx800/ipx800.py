@@ -13,6 +13,7 @@ class IPX800:
 
        Attributes:
            relays  the IPX800 relays"""
+
     def __init__(self, url, api_key="apikey"):
         self.url = url
         self._api_url = f"{url}/api/xdevices.json"
@@ -43,7 +44,8 @@ class RelaySlice(object):
     def __getitem__(self, key):
         if isinstance(key, slice):
             return [
-                Relay(self._ipx, k + 1) for k in range(key.start, key.stop, key.step)
+                Relay(self._ipx, k + 1)
+                for k in range(key.start, key.stop, key.step)
             ]
         else:
             return Relay(self._ipx, key + 1)
