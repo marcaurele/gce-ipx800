@@ -1,6 +1,10 @@
 GCE-IPX800
 ==========
 
+.. image:: https://img.shields.io/pypi/v/gce-ipx800?color=blue
+   :alt: Pypi version
+   :target: https://pypi.org/project/gce-ipx800/
+
 .. image:: https://github.com/marcaurele/py-ipx800/workflows/Build%20status/badge.svg
    :alt: Build Status
    :target: https://github.com/marcaurele/py-ipx800/actions
