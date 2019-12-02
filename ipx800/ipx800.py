@@ -1,5 +1,7 @@
 # -*- coding: utf-8 *-*
 
+import warnings
+
 import requests
 
 
@@ -28,9 +30,13 @@ class IPX800:
         params_fix.update(params)
         r = requests.get(self._api_url, params=params_fix, timeout=2)
         r.raise_for_status()
-        result = r.json()
-        if result["status"] == "Success":
-            return result
+        content = r.json()
+        result = content.pop("status", None)
+        product = content.pop("product", None)
+        if product != "IPX800_V4":
+            warnings.warn(f"Your device '{product}' might not be compatible")
+        if result == "Success":
+            return content
         else:
             raise ApiError()
 
