@@ -1,5 +1,6 @@
 # -*- coding: utf-8 *-*
 
+import collections
 import warnings
 
 import requests
@@ -41,11 +42,12 @@ class IPX800:
             raise ApiError()
 
 
-class RelaySlice(object):
+class RelaySlice(collections.abc.Sequence):
     """Slice implementation for have an iterable over the Relay object."""
 
     def __init__(self, ipx):
         self._ipx = ipx
+        self._length = None
 
     def __getitem__(self, key):
         if isinstance(key, slice):
@@ -53,8 +55,15 @@ class RelaySlice(object):
                 Relay(self._ipx, k + 1)
                 for k in range(key.start, key.stop, key.step)
             ]
-        else:
+        elif isinstance(key, int):
             return Relay(self._ipx, key + 1)
+        else:
+            raise TypeError("Slice of 'int' is the only accepted type.")
+
+    def __len__(self):
+        if self._length is None:
+            self._length = len(self._ipx._request({"Get": "R"}))
+        return self._length
 
 
 class Relay(IPX800):
