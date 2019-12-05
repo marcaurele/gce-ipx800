@@ -5,9 +5,9 @@ GCE-IPX800
    :alt: Pypi version
    :target: https://pypi.org/project/gce-ipx800/
 
-.. image:: https://github.com/marcaurele/py-ipx800/workflows/Build%20status/badge.svg
+.. image:: https://github.com/marcaurele/gce-ipx800/workflows/Build%20status/badge.svg
    :alt: Build Status
-   :target: https://github.com/marcaurele/py-ipx800/actions
+   :target: https://github.com/marcaurele/gce-ipx800/actions
 
 .. image:: https://img.shields.io/pypi/l/gce-ipx800.svg
    :alt: License
