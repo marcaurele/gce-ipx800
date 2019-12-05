@@ -56,6 +56,8 @@ Usage
 
     r4.togle()
 
+    len(ipx.relays)  # => 56
+
 Links
 -----
 
