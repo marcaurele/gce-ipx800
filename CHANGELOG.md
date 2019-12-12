@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+- bug fix on relay
+
 ## 0.2.2
 
 - review sequence implementation
