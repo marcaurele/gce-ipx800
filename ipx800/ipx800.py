@@ -43,7 +43,7 @@ class IPX800:
 
 
 class RelaySlice(collections.abc.Sequence):
-    """Slice implementation for have an iterable over the Relay object."""
+    """Slice implementation for an iterable over the Relay object."""
 
     def __init__(self, ipx):
         self._ipx = ipx
@@ -81,22 +81,22 @@ class Relay(IPX800):
         return response[f"R{self.id}"] == 1
 
     def on(self) -> bool:
-        """Turn on a relay and return a boolean if it was successful."""
+        """Turn on a relay and return True if it was successful."""
         params = {"SetR": self.id}
-        result = self._request(params)
-        return result["status"] == "Success"
+        self._request(params)
+        return True
 
     def off(self) -> bool:
-        """Turn off a relay and return a boolean if it was successful."""
+        """Turn off a relay and return True if it was successful."""
         params = {"ClearR": self.id}
-        result = self._request(params)
-        return result["status"] == "Success"
+        self._request(params)
+        return True
 
     def toggle(self) -> bool:
-        """Toggle a relay and return a boolean if it was successful."""
+        """Toggle a relay and return True if it was successful."""
         params = {"ToggleR": self.id}
-        result = self._request(params)
-        return result["status"] == "Success"
+        self._request(params)
+        return True
 
     def __repr__(self) -> str:
         return f"<ipx800.relay id={self.id}>"

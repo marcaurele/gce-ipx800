@@ -67,3 +67,12 @@ class IPX800Test(TestCase):
         assert ipx.relays[0].status
         assert ipx.relays[5].status
         assert ipx.relays[1].status is False
+
+    @patch("requests.get")
+    def test_relay_off(self, mock_request):
+        mock_request.return_value = self._mock_response(
+            json_file="tests/clearr2.json"
+        )
+
+        ipx = ipx800("http://192.0.2.4")
+        assert ipx.relays[1].off()
