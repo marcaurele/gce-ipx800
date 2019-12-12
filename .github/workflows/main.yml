@@ -34,11 +34,11 @@ jobs:
     - name: Coveralls parallel
       uses: coverallsapp/github-action@master
       with:
-        - github-token: ${{ secrets.GITHUB_TOKEN }}
+        - github-token: ${{ secrets.COVERALLS_TOKEN }}
         - parallel: true
 
     - name: Coveralls result
       uses: coverallsapp/github-action@master
       with:
-        - github-token: ${{ secrets.GITHUB_TOKEN }}
+        - github-token: ${{ secrets.COVERALLS_TOKEN }}
         - parallel-finished: true
