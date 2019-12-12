@@ -1,6 +1,6 @@
 name: Build status
 
-on: [push]
+on: [push, merge_request]
 
 jobs:
   build:
@@ -28,5 +28,17 @@ jobs:
         flake8 ipx800/ tests/ --count --show-source --statistics
     - name: Test with pytest
       run: |
-        pip install pytest
-        pytest  tests/
+        pip install pytest pytest-cov
+        pytest -cov=ipx800 tests/
+
+    - name: Coveralls parallel
+      uses: coverallsapp/github-action@master
+      with:
+        - github-token: ${{ secrets.GITHUB_TOKEN }}
+        - parallel: true
+
+    - name: Coveralls result
+      uses: coverallsapp/github-action@master
+      with:
+        - github-token: ${{ secrets.GITHUB_TOKEN }}
+        - parallel-finished: true
