@@ -76,3 +76,13 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         assert ipx.relays[1].off()
+
+    @patch("requests.get")
+    def test_relay_error(self, mock_request):
+        mock_request.return_value = self._mock_response(
+            json_file="tests/error.json"
+        )
+
+        ipx = ipx800("http://192.0.2.4")
+        with self.assertRaises(ApiError):
+            ipx.relays[3].on()
