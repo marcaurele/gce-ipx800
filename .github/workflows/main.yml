@@ -1,6 +1,6 @@
 name: Build status
 
-on: [push, merge_request]
+on: [push, pull_request]
 
 jobs:
   build:
