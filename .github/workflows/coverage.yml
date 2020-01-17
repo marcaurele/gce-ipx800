@@ -1,0 +1,11 @@
+name: Coverage
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  steps:
+  - name: Coveralls GitHub Action
+    uses: coverallsapp/github-action@v1.0.1
+
