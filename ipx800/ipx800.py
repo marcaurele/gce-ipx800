@@ -21,7 +21,7 @@ class IPX800:
         self.url = url
         self._api_url = f"{url}/api/xdevices.json"
         self.api_key = api_key
-        self.relays = RelaySlice(self)
+        self.relays = GenericSlice(self, Relay, {"Get": "R"})
 
     def _request(self, params):
         # (bug) IPX4, key must be the first parameter otherwise some
@@ -42,27 +42,29 @@ class IPX800:
             raise ApiError()
 
 
-class RelaySlice(collections.abc.Sequence):
-    """Slice implementation for an iterable over the Relay object."""
+class GenericSlice(collections.abc.Sequence):
+    """Slice implementation for an iterable over GCE objects"""
 
-    def __init__(self, ipx):
+    def __init__(self, ipx, gce_type, request_arg=None):
         self._ipx = ipx
         self._length = None
+        self._type = gce_type
+        self._rarg = request_arg
 
     def __getitem__(self, key):
         if isinstance(key, slice):
             return [
-                Relay(self._ipx, k + 1)
+                self._type(self._ipx, k + 1)
                 for k in range(key.start, key.stop, key.step)
             ]
         elif isinstance(key, int):
-            return Relay(self._ipx, key + 1)
+            return self._type(self._ipx, key + 1)
         else:
-            raise TypeError("Slice of 'int' is the only accepted type.")
+            raise TypeError("Slice of 'int' is the only accepted range")
 
     def __len__(self):
         if self._length is None:
-            self._length = len(self._ipx._request({"Get": "R"}))
+            self._length = len(self._ipx._request(self._rarg))
         return self._length
 
 
