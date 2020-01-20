@@ -31,14 +31,9 @@ jobs:
         pip install pytest pytest-cov
         pytest -cov=ipx800 tests/
 
-    - name: Coveralls parallel
-      uses: coverallsapp/github-action@master
-      with:
-        - github-token: ${{ secrets.COVERALLS_TOKEN }}
-        - parallel: true
-
-    - name: Coveralls result
-      uses: coverallsapp/github-action@master
-      with:
-        - github-token: ${{ secrets.COVERALLS_TOKEN }}
-        - parallel-finished: true
+    - name: Code coverage
+      run: |
+        pip install codecov
+        codecov --token=$token
+      env:
+        token: ${{ secrets.CODECOV_TOKEN }}
