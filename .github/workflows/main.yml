@@ -1,6 +1,6 @@
 name: Build status
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -28,5 +28,12 @@ jobs:
         flake8 ipx800/ tests/ --count --show-source --statistics
     - name: Test with pytest
       run: |
-        pip install pytest
-        pytest  tests/
+        pip install pytest pytest-cov
+        pytest --cov=ipx800 tests/
+
+    - name: Code coverage
+      run: |
+        pip install codecov
+        codecov --token=$token
+      env:
+        token: ${{ secrets.CODECOV_TOKEN }}
