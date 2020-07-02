@@ -111,4 +111,5 @@ class Relay(IPX800):
         return f"<ipx800.relay id={self.id}>"
 
     def __str__(self) -> str:
-        return f"[IPX800-relay: id={self.id}, status={'On' if self.status else 'Off'}]"
+        return (f"[IPX800-relay: id={self.id}, "
+                f"status={'On' if self.status else 'Off'}]")

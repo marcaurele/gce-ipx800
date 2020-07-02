@@ -29,7 +29,7 @@ class IPX800Test(TestCase):
     def test_invalid_relay_index(self):
         ipx = ipx800("http://192.0.2.4")
         with self.assertRaises(TypeError):
-            ipx.relays['abc']
+            ipx.relays["abc"]
 
     @patch("requests.get")
     def test_invalid_relay(self, mock_request):
@@ -121,7 +121,9 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(str(ipx.relays[0]), "[IPX800-relay: id=1, status=On]")
-        self.assertEqual(str(ipx.relays[2]), "[IPX800-relay: id=3, status=Off]")
+        self.assertEqual(
+            str(ipx.relays[2]), "[IPX800-relay: id=3, status=Off]"
+        )
 
     @patch("requests.get")
     def test_relay_error(self, mock_request):
