@@ -134,3 +134,38 @@ class IPX800Test(TestCase):
         ipx = ipx800("http://192.0.2.4")
         with self.assertRaises(ApiError):
             ipx.relays[3].on()
+
+    @patch("requests.get")
+    def test_analog_sensors_length(self, mock_request):
+        mock_request.return_value = self._mock_response(
+            json_file="tests/geta.json"
+        )
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(len(ipx.analogs), 4)
+
+    @patch("requests.get")
+    def test_analog_sensors_value(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        assert ipx.analogs[0].value == 44591
+        assert ipx.analogs[1].value == 16315
+        assert ipx.analogs[2].value == 0
+
+    @patch("requests.get")
+    def test_analog_sensor_str(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(
+            str(ipx.analogs[0]), "[IPX800-analog-sensor: id=1, value=44591]"
+        )

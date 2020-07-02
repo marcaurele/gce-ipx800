@@ -22,6 +22,7 @@ class IPX800:
         self._api_url = f"{url}/api/xdevices.json"
         self.api_key = api_key
         self.relays = GenericSlice(self, Relay, {"Get": "R"})
+        self.analogs = GenericSlice(self, Analog, {"Get": "A"})
 
     def _request(self, params):
         # (bug) IPX4, key must be the first parameter otherwise some
@@ -103,9 +104,32 @@ class Relay(IPX800):
         self._request(params)
         return True
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> str:  # pragma: no cover
         return f"<ipx800.relay id={self.id}>"
 
     def __str__(self) -> str:
-        return (f"[IPX800-relay: id={self.id}, "
-                f"status={'On' if self.status else 'Off'}]")
+        return (
+            f"[IPX800-relay: id={self.id}, "
+            f"status={'On' if self.status else 'Off'}]"
+        )
+
+
+class Analog(IPX800):
+    """Representing an IPX800 analog sensor."""
+
+    def __init__(self, ipx, analog_id: int):
+        super().__init__(ipx.url, ipx.api_key)
+        self.id = analog_id
+
+    @property
+    def value(self) -> int:
+        """Return the current analog sensor value."""
+        params = {"Get": "A"}
+        response = self._request(params)
+        return response[f"A{self.id}"]
+
+    def __repr__(self) -> str:  # pragma: no cover
+        return f"<ipx800.analog_sensor id={self.id}>"
+
+    def __str__(self) -> str:
+        return f"[IPX800-analog-sensor: id={self.id}, value={self.value}]"
