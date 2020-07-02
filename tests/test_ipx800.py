@@ -34,7 +34,7 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         with self.assertRaises(ApiError):
-            r999 = ipx.relays[998].status
+            ipx.relays[998].status
         self.assertIn(
             call(
                 "http://192.0.2.4/api/xdevices.json",
