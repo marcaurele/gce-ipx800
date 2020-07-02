@@ -121,15 +121,20 @@ class Analog(IPX800):
         super().__init__(ipx.url, ipx.api_key)
         self.id = analog_id
 
-    @property
-    def value(self) -> int:
-        """Return the current analog sensor value."""
-        params = {"Get": "A"}
-        response = self._request(params)
-        return response[f"A{self.id}"]
-
     def __repr__(self) -> str:
         return f"<ipx800.analog_sensor id={self.id}>"
 
     def __str__(self) -> str:
         return f"[IPX800-analog-sensor: id={self.id}, value={self.value}]"
+
+    @property
+    def value(self) -> float:
+        """Return the current analog sensor value."""
+        params = {"Get": "A"}
+        response = self._request(params)
+        return response[f"A{self.id}"]
+
+    @property
+    def as_tc100_sensor(self) -> float:
+        """Return the analog sensor value as a TC 100"""
+        return ((self.value * 0.000050354) - 0.25) / 0.028
