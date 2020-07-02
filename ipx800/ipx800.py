@@ -104,12 +104,14 @@ class Relay(IPX800):
         self._request(params)
         return True
 
-    def __repr__(self) -> str: # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         return f"<ipx800.relay id={self.id}>"
 
     def __str__(self) -> str:
-        return (f"[IPX800-relay: id={self.id}, "
-                f"status={'On' if self.status else 'Off'}]")
+        return (
+            f"[IPX800-relay: id={self.id}, "
+            f"status={'On' if self.status else 'Off'}]"
+        )
 
 
 class Analog(IPX800):
@@ -126,7 +128,7 @@ class Analog(IPX800):
         response = self._request(params)
         return response[f"A{self.id}"]
 
-    def __repr__(self) -> str: # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         return f"<ipx800.analog_sensor id={self.id}>"
 
     def __str__(self) -> str:
