@@ -111,6 +111,7 @@ class Relay(IPX800):
         return (f"[IPX800-relay: id={self.id}, "
                 f"status={'On' if self.status else 'Off'}]")
 
+
 class Analog(IPX800):
     """Representing an IPX800 analog sensor."""
 
@@ -130,4 +131,3 @@ class Analog(IPX800):
 
     def __str__(self) -> str:
         return f"[IPX800-analog-sensor: id={self.id}, value={self.value}"
-
