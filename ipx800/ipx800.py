@@ -130,4 +130,4 @@ class Analog(IPX800):
         return f"<ipx800.analog_sensor id={self.id}>"
 
     def __str__(self) -> str:
-        return f"[IPX800-analog-sensor: id={self.id}, value={self.value}"
+        return f"[IPX800-analog-sensor: id={self.id}, value={self.value}]"
