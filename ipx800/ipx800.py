@@ -85,10 +85,6 @@ class Relay(IPX800):
         response = self._request(params)
         return response[f"R{self.id}"] == 1
 
-    @property
-    def status_str(self) -> str:
-        return "On" if self.status() else "Off"
-
     def on(self) -> bool:
         """Turn on a relay and return True if it was successful."""
         params = {"SetR": self.id}
