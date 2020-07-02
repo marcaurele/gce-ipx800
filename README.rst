@@ -66,3 +66,8 @@ Links
 -----
 
 * GCE IPX800 V4 API: https://gce.ovh/wiki/index.php?title=API_V4
+
+Licence
+-------
+
+Licensed under Apache License Version 2.0
