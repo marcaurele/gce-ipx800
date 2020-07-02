@@ -33,9 +33,8 @@ class IPX800Test(TestCase):
         )
 
         ipx = ipx800("http://192.0.2.4")
-        r999 = ipx.relays[998]
         with self.assertRaises(ApiError):
-            r999.status
+            r999 = ipx.relays[998].status
         self.assertIn(
             call(
                 "http://192.0.2.4/api/xdevices.json",
@@ -61,6 +60,7 @@ class IPX800Test(TestCase):
             self._mock_response(json_file="tests/getr.json"),
             self._mock_response(json_file="tests/getr.json"),
             self._mock_response(json_file="tests/getr.json"),
+            self._mock_response(json_file="tests/getr.json"),
         ]
 
         ipx = ipx800("http://192.0.2.4")
@@ -70,9 +70,10 @@ class IPX800Test(TestCase):
 
     @patch("requests.get")
     def test_relay_off(self, mock_request):
-        mock_request.return_value = self._mock_response(
-            json_file="tests/clearr2.json"
-        )
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getr.json"),
+            self._mock_response(json_file="tests/clearr2.json"),
+        ]
 
         ipx = ipx800("http://192.0.2.4")
         assert ipx.relays[1].off()
