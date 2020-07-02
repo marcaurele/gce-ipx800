@@ -58,7 +58,10 @@ class GenericSlice(collections.abc.Sequence):
                 for k in range(key.start, key.stop, key.step)
             ]
         elif isinstance(key, int):
-            return self._type(self._ipx, key + 1)
+            if key < self.__len__():
+                return self._type(self._ipx, key + 1)
+            else:
+                raise IndexError
         else:
             raise TypeError("Slice of 'int' is the only accepted range")
 
@@ -104,4 +107,5 @@ class Relay(IPX800):
         return f"<ipx800.relay id={self.id}>"
 
     def __str__(self) -> str:
-        return f"[IPX800-relay: id={self.id}, status={self.status}"
+        return (f"[IPX800-relay: id={self.id}, "
+                f"status={'On' if self.status else 'Off'}]")
