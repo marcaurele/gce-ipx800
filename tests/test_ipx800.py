@@ -26,6 +26,11 @@ class IPX800Test(TestCase):
                 mock_response.json.return_value = json.loads(f.read())
         return mock_response
 
+    def test_invalid_relay_index(self):
+        ipx = ipx800("http://192.0.2.4")
+        with self.assertRaises(TypeError):
+            ipx.relays['abc']
+
     @patch("requests.get")
     def test_invalid_relay(self, mock_request):
         mock_request.return_value = self._mock_response(
@@ -55,6 +60,14 @@ class IPX800Test(TestCase):
         self.assertEqual(len(ipx.relays), 56)
 
     @patch("requests.get")
+    def test_relay_iteration(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getr.json") for i in range(56)
+        ]
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(len([r for r in ipx.relays]), 56)
+
+    @patch("requests.get")
     def test_relay_status(self, mock_request):
         mock_request.side_effect = [
             self._mock_response(json_file="tests/getr.json"),
@@ -77,6 +90,38 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         assert ipx.relays[1].off()
+
+    @patch("requests.get")
+    def test_relay_on(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getr.json"),
+            self._mock_response(json_file="tests/setr2.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        assert ipx.relays[1].on()
+
+    @patch("requests.get")
+    def test_relay_toggle(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getr.json"),
+            self._mock_response(json_file="tests/setr2.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        assert ipx.relays[1].toggle()
+
+    @patch("requests.get")
+    def test_relay_str(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getr.json"),
+            self._mock_response(json_file="tests/getr.json"),
+            self._mock_response(json_file="tests/getr.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(str(ipx.relays[0]), "[IPX800-relay: id=1, status=On]")
+        self.assertEqual(str(ipx.relays[2]), "[IPX800-relay: id=3, status=Off]")
 
     @patch("requests.get")
     def test_relay_error(self, mock_request):
