@@ -5,4 +5,4 @@
 from ipx800.ipx800 import ApiError, IPX800 as ipx800  # noqa
 
 
-__version__ = "0.2.3"
+__version__ = "0.3.0"

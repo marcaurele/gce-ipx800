@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- add read operation on analog sensors
+- bug fix on slice iteration
+
 ## 0.2.3
 
 - bug fix on relay
