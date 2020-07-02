@@ -28,7 +28,7 @@ jobs:
         flake8 ipx800/ tests/ --count --show-source --statistics
     - name: Test with pytest
       run: |
-        pip install pytest pytest-cov
+        pip install pytest pytest-cov coverage[toml]
         pytest --cov=ipx800 tests/
 
     - name: Code coverage
