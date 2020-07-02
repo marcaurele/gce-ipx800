@@ -166,5 +166,6 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        self.assertEqual(str(ipx.analogs[0]),
-                "[IPX800-analog-sensor: id=1, value=44591]")
+        self.assertEqual(
+            str(ipx.analogs[0]), "[IPX800-analog-sensor: id=1, value=44591]"
+        )
