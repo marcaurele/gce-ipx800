@@ -152,7 +152,7 @@ class Analog(IPX800):
     @property
     def as_xhtx3_tc5050(self) -> float:
         """Return the corresponding temperature in °C for a
-        XHT-X3 Temp-TC5050 sensor.
+        XHT-X3 TC5050 temperature sensor.
         """
         return (self.as_volt - 1.63) / 0.0326
 
