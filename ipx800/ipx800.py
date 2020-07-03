@@ -140,12 +140,12 @@ class Analog(IPX800):
         return self.value * 0.000050354
 
     @property
-    def as_tc4012_sensor(self) -> float:
+    def as_tc4012(self) -> float:
         """Return the corresponding temperature in +C for a TC4012 sensor."""
         return self.as_volt - 50
 
     @property
-    def as_tc100_sensor(self) -> float:
+    def as_tc100(self) -> float:
         """Return the corresponding temperature in °C for a TC 100 sensor."""
         return (self.as_volt - 0.25) / 0.028
 
@@ -154,7 +154,7 @@ class Analog(IPX800):
         """Return the corresponding temperature in °C for a
         XHT-X3 Temp-TC5050 sensor.
         """
-        return (self.volt - 1.63) / 0.0326
+        return (self.as_volt - 1.63) / 0.0326
 
     @property
     def as_xhtx3_ls100(self) -> float:
