@@ -121,6 +121,12 @@ class Analog(IPX800):
         super().__init__(ipx.url, ipx.api_key)
         self.id = analog_id
 
+    def __repr__(self) -> str:
+        return f"<ipx800.analog_sensor id={self.id}>"
+
+    def __str__(self) -> str:
+        return f"[IPX800-analog-sensor: id={self.id}, value={self.value}]"
+
     @property
     def value(self) -> int:
         """Return the current analog sensor value."""
@@ -128,8 +134,38 @@ class Analog(IPX800):
         response = self._request(params)
         return response[f"A{self.id}"]
 
-    def __repr__(self) -> str:
-        return f"<ipx800.analog_sensor id={self.id}>"
+    @property
+    def as_volt(self) -> float:
+        """Return the analog sensor value as Volt."""
+        return self.value * 0.000050354
 
-    def __str__(self) -> str:
-        return f"[IPX800-analog-sensor: id={self.id}, value={self.value}]"
+    @property
+    def as_tc4012(self) -> float:
+        """Return the corresponding temperature in +C for a TC4012 sensor."""
+        return self.as_volt - 50
+
+    @property
+    def as_tc100(self) -> float:
+        """Return the corresponding temperature in °C for a TC 100 sensor."""
+        return (self.as_volt - 0.25) / 0.028
+
+    @property
+    def as_xhtx3_tc5050(self) -> float:
+        """Return the corresponding temperature in °C for a
+        XHT-X3 TC5050 temperature sensor.
+        """
+        return (self.as_volt - 1.63) / 0.0326
+
+    @property
+    def as_xhtx3_ls100(self) -> float:
+        """Return the corresponding value for a
+        XHT-X3 LS-100 light sensor.
+        """
+        return self.value * 0.0015258
+
+    @property
+    def as_xhtx3_sh100(self) -> float:
+        """Return the corresponding value for a
+        XHT-X3 SH-100 humidity sensor.
+        """
+        return ((self.value * 0.00323) / 211.2 - 0.1515) / 0.00636

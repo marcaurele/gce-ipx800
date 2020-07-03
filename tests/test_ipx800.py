@@ -169,3 +169,24 @@ class IPX800Test(TestCase):
         self.assertEqual(
             str(ipx.analogs[0]), "[IPX800-analog-sensor: id=1, value=44591]"
         )
+
+    @patch("requests.get")
+    def test_analog_sensor_values(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+            self._mock_response(json_file="tests/geta.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        sensor = ipx.analogs[0]
+        self.assertEqual(sensor.as_volt, 2.245335214)
+        self.assertEqual(sensor.as_tc4012, -47.754664786)
+        self.assertEqual(sensor.as_tc100, 71.26197192857143)
+        self.assertEqual(sensor.as_xhtx3_tc5050, 18.875313312883435)
+        self.assertEqual(sensor.as_xhtx3_ls100, 68.0369478)
+        self.assertEqual(sensor.as_xhtx3_sh100, 83.40489952591959)
