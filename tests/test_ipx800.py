@@ -169,7 +169,7 @@ class IPX800Test(TestCase):
         self.assertEqual(
             str(ipx.analogs[0]), "[IPX800-analog-sensor: id=1, value=44591]"
         )
-    
+
     @patch("requests.get")
     def test_analog_sensor_values(self, mock_request):
         mock_request.side_effect = [
