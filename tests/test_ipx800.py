@@ -136,6 +136,77 @@ class IPX800Test(TestCase):
             ipx.relays[3].on()
 
     @patch("requests.get")
+    def test_virtuals_length(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getvi.json"),
+            self._mock_response(json_file="tests/getvo.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(len(ipx.virtual_inputs), 128)
+        self.assertEqual(len(ipx.virtual_outputs), 128)
+
+    @patch("requests.get")
+    def test_virtuals_iteration(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getvi.json")
+            for i in range(128)
+        ]
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(len([r for r in ipx.virtual_inputs]), 128)
+
+    @patch("requests.get")
+    def test_virtuals_status(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getvi.json"),
+            self._mock_response(json_file="tests/getvi.json"),
+            self._mock_response(json_file="tests/getvo.json"),
+            self._mock_response(json_file="tests/getvo.json"),
+            self._mock_response(json_file="tests/getvi.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        assert ipx.virtual_inputs[12].status
+        assert ipx.virtual_outputs[127].status
+        assert ipx.virtual_inputs[1].status is False
+
+    @patch("requests.get")
+    def test_virtual_input_str(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getvi.json"),
+            self._mock_response(json_file="tests/getvi.json"),
+            self._mock_response(json_file="tests/getvi.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(
+            str(ipx.virtual_inputs[0]),
+            "[IPX800-virtual-input: id=1, status=Off]",
+        )
+        self.assertEqual(
+            str(ipx.virtual_inputs[12]),
+            "[IPX800-virtual-input: id=13, status=On]",
+        )
+
+    @patch("requests.get")
+    def test_virtual_output_str(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getvo.json"),
+            self._mock_response(json_file="tests/getvo.json"),
+            self._mock_response(json_file="tests/getvo.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(
+            str(ipx.virtual_outputs[0]),
+            "[IPX800-virtual-output: id=1, status=On]",
+        )
+        self.assertEqual(
+            str(ipx.virtual_outputs[2]),
+            "[IPX800-virtual-output: id=3, status=Off]",
+        )
+
+    @patch("requests.get")
     def test_analog_sensors_length(self, mock_request):
         mock_request.return_value = self._mock_response(
             json_file="tests/geta.json"

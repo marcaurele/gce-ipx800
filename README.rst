@@ -29,7 +29,13 @@ A python library to control a GCE-Electronics IPX800 V4 device through its API.
 IPX800 features implemented
 ---------------------------
 
-* Control relays
+* Control:
+
+  - relays (``ipx.relays[]``),
+  - virtual inputs (``ipx.virtual_inputs[]``),
+  - virtual outputs (``ipx.virtual_outputs[]``).
+
+* Read values from analog sensors (``ipx.analogs[]``).
 
 
 Installation
