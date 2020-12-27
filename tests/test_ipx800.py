@@ -149,7 +149,8 @@ class IPX800Test(TestCase):
     @patch("requests.get")
     def test_virtuals_iteration(self, mock_request):
         mock_request.side_effect = [
-            self._mock_response(json_file="tests/getvi.json") for i in range(128)
+            self._mock_response(json_file="tests/getvi.json")
+            for i in range(128)
         ]
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(len([r for r in ipx.virtual_inputs]), 128)
@@ -178,9 +179,13 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        self.assertEqual(str(ipx.virtual_inputs[0]), "[IPX800-virtual-input: id=1, status=Off]")
         self.assertEqual(
-            str(ipx.virtual_inputs[12]), "[IPX800-virtual-input: id=13, status=On]"
+            str(ipx.virtual_inputs[0]),
+            "[IPX800-virtual-input: id=1, status=Off]",
+        )
+        self.assertEqual(
+            str(ipx.virtual_inputs[12]),
+            "[IPX800-virtual-input: id=13, status=On]",
         )
 
     @patch("requests.get")
@@ -192,9 +197,13 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        self.assertEqual(str(ipx.virtual_outputs[0]), "[IPX800-virtual-output: id=1, status=On]")
         self.assertEqual(
-            str(ipx.virtual_outputs[2]), "[IPX800-virtual-output: id=3, status=Off]"
+            str(ipx.virtual_outputs[0]),
+            "[IPX800-virtual-output: id=1, status=On]",
+        )
+        self.assertEqual(
+            str(ipx.virtual_outputs[2]),
+            "[IPX800-virtual-output: id=3, status=Off]",
         )
 
     @patch("requests.get")
