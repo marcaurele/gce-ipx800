@@ -25,7 +25,7 @@ classifiers = ["Topic :: Home Automation",
 	       "Programming Language :: Python :: 3.9"]
 
 [tool.black]
-target-version = ["py36", "py37", "py38"]
+target-version = ["py36", "py37", "py38", "py39"]
 line-length = 79
 
 [tool.coverage.report]
