@@ -23,6 +23,8 @@ class IPX800:
         self.api_key = api_key
         self.relays = GenericSlice(self, Relay, {"Get": "R"})
         self.analogs = GenericSlice(self, Analog, {"Get": "A"})
+        self.virtual_inputs = GenericSlice(self, VirtualInput, {"Get": "VI"})
+        self.virtual_outputs = GenericSlice(self, VirtualOutput, {"Get": "VO"})
 
     def _request(self, params):
         # (bug) IPX4, key must be the first parameter otherwise some
@@ -121,6 +123,20 @@ class Relay(BaseSwitch):
 
     def __init__(self, ipx, id: int):
         super().__init__(ipx, id, name="Relay", code="R")
+
+
+class VirtualInput(BaseSwitch):
+    """Representing an IPX800 virtual input."""
+
+    def __init__(self, ipx, id: int):
+        super().__init__(ipx, id, name="virtual-input", code="VI")
+
+
+class VirtualOutput(BaseSwitch):
+    """Reprenting an IPX800 virtual output."""
+
+    def __init__(self, ipx, id: int):
+        super().__init__(ipx, id, name="virtual-output", code="VO")
 
 
 class Analog(IPX800):
