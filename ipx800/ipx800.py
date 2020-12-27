@@ -14,8 +14,12 @@ class ApiError(Exception):
 class IPX800:
     """Class representing the IPX800 and its API.
 
-       Attributes:
-           relays  the IPX800 relays"""
+    Attributes:
+        analogs  the analog sensors
+        relays  the physical relays
+        virtual_inputs  the virtual inputs
+        virtual_outputs  the virtual outputs
+    """
 
     def __init__(self, url, api_key="apikey"):
         self.url = url
