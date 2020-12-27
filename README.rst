@@ -30,10 +30,10 @@ IPX800 features implemented
 ---------------------------
 
 * Control:
-  - relays (`ipx.relays[]`),
-  - virtual inputs (`ipx.virtual_inputs[]`),
-  - virtual outputs (`ipx.virtual_outputs[]`).
-* Read values from analog sensors (`ipx.analogs[]`).
+  - relays (``ipx.relays[]``),
+  - virtual inputs (``ipx.virtual_inputs[]``),
+  - virtual outputs (``ipx.virtual_outputs[]``).
+* Read values from analog sensors (``ipx.analogs[]``).
 
 
 Installation
