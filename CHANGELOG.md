@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+
+- add virtual inputs operations
+- add virtual output operations
+- refactor relay/switch code
+- test and support python 3.9
+
 ## 0.3.0
 
 - add read operation on analog sensors
