@@ -72,46 +72,55 @@ class GenericSlice(collections.abc.Sequence):
         return self._length
 
 
-class Relay(IPX800):
-    """Representing an IPX800 relay."""
+class BaseSwitch(IPX800):
+    """Base class to abstract switch operations."""
 
-    def __init__(self, ipx, relay_id: int):
+    def __init__(self, ipx, id: int, name: str, code: str):
         super().__init__(ipx.url, ipx.api_key)
-        self.id = relay_id
+        self.id = id
+        self._name = name
+        self._code = code
 
     @property
     def status(self) -> bool:
-        """Return the current relay status."""
-        params = {"Get": "R"}
+        """Return the current status."""
+        params = {"Get": self._code}
         response = self._request(params)
-        return response[f"R{self.id}"] == 1
+        return response[f"{self._code}{self.id}"] == 1
 
     def on(self) -> bool:
-        """Turn on a relay and return True if it was successful."""
-        params = {"SetR": self.id}
+        """Turn on and return True if it was successful."""
+        params = {f"Set{self._code}": self.id}
         self._request(params)
         return True
 
     def off(self) -> bool:
-        """Turn off a relay and return True if it was successful."""
-        params = {"ClearR": self.id}
+        """Turn off and return True if it was successful."""
+        params = {"Clear{self._code}": self.id}
         self._request(params)
         return True
 
     def toggle(self) -> bool:
-        """Toggle a relay and return True if it was successful."""
-        params = {"ToggleR": self.id}
+        """Toggle and return True if it was successful."""
+        params = {"Toggle{self._code}": self.id}
         self._request(params)
         return True
 
     def __repr__(self) -> str:
-        return f"<ipx800.relay id={self.id}>"
+        return f"<ipx800.{self._name} id={self.id}>"
 
     def __str__(self) -> str:
         return (
-            f"[IPX800-relay: id={self.id}, "
+            f"[IPX800-{self._name}: id={self.id}, "
             f"status={'On' if self.status else 'Off'}]"
         )
+
+
+class Relay(BaseSwitch):
+    """Representing an IPX800 relay."""
+
+    def __init__(self, ipx, id: int):
+        super().__init__(ipx, id, name="Relay", code="R")
 
 
 class Analog(IPX800):
