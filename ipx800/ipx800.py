@@ -122,7 +122,7 @@ class Relay(BaseSwitch):
     """Representing an IPX800 relay."""
 
     def __init__(self, ipx, id: int):
-        super().__init__(ipx, id, name="Relay", code="R")
+        super().__init__(ipx, id, name="relay", code="R")
 
 
 class VirtualInput(BaseSwitch):
