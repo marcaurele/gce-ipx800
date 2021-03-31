@@ -18,3 +18,9 @@ max_line_length = 119
 indent_style = space
 indent_size = 2
 
+[tests/*.json]
+charset = latin1
+end_of_line = crlf
+insert_final_newline = false
+trim_trailing_whitespace = false
+
