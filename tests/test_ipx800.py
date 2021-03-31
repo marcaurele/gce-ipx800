@@ -77,7 +77,7 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        assert ipx.relays[0].status
+        assert ipx.relays[0].status is False
         assert ipx.relays[5].status
         assert ipx.relays[1].status is False
 
@@ -120,7 +120,7 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        self.assertEqual(str(ipx.relays[0]), "[IPX800-relay: id=1, status=On]")
+        self.assertEqual(str(ipx.relays[5]), "[IPX800-relay: id=6, status=On]")
         self.assertEqual(
             str(ipx.relays[2]), "[IPX800-relay: id=3, status=Off]"
         )
@@ -166,9 +166,9 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        assert ipx.virtual_inputs[12].status
-        assert ipx.virtual_outputs[127].status
-        assert ipx.virtual_inputs[1].status is False
+        assert ipx.virtual_inputs[31].status
+        assert ipx.virtual_outputs[31].status
+        assert ipx.virtual_inputs[13].status is False
 
     @patch("requests.get")
     def test_virtual_input_str(self, mock_request):
@@ -184,8 +184,8 @@ class IPX800Test(TestCase):
             "[IPX800-virtual-input: id=1, status=Off]",
         )
         self.assertEqual(
-            str(ipx.virtual_inputs[12]),
-            "[IPX800-virtual-input: id=13, status=On]",
+            str(ipx.virtual_inputs[31]),
+            "[IPX800-virtual-input: id=32, status=On]",
         )
 
     @patch("requests.get")
@@ -198,8 +198,8 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(
-            str(ipx.virtual_outputs[0]),
-            "[IPX800-virtual-output: id=1, status=On]",
+            str(ipx.virtual_outputs[31]),
+            "[IPX800-virtual-output: id=32, status=On]",
         )
         self.assertEqual(
             str(ipx.virtual_outputs[2]),
@@ -225,8 +225,8 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        assert ipx.analogs[0].value == 44591
-        assert ipx.analogs[1].value == 16315
+        assert ipx.analogs[0].value == 47611
+        assert ipx.analogs[1].value == 18328
         assert ipx.analogs[2].value == 0
 
     @patch("requests.get")
@@ -238,7 +238,7 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(
-            str(ipx.analogs[0]), "[IPX800-analog-sensor: id=1, value=44591]"
+            str(ipx.analogs[0]), "[IPX800-analog-sensor: id=1, value=47611]"
         )
 
     @patch("requests.get")
@@ -255,9 +255,9 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         sensor = ipx.analogs[0]
-        self.assertEqual(sensor.as_volt, 2.245335214)
-        self.assertEqual(sensor.as_tc4012, -47.754664786)
-        self.assertEqual(sensor.as_tc100, 71.26197192857143)
-        self.assertEqual(sensor.as_xhtx3_tc5050, 18.875313312883435)
-        self.assertEqual(sensor.as_xhtx3_ls100, 68.0369478)
-        self.assertEqual(sensor.as_xhtx3_sh100, 83.40489952591959)
+        self.assertEqual(sensor.as_volt, 2.3974042939999998)
+        self.assertEqual(sensor.as_tc4012, -47.602595706)
+        self.assertEqual(sensor.as_tc100, 76.69301049999999)
+        self.assertEqual(sensor.as_xhtx3_tc5050, 23.540009018404906)
+        self.assertEqual(sensor.as_xhtx3_ls100, 72.6448638)
+        self.assertEqual(sensor.as_xhtx3_sh100, 90.66693616590432)
