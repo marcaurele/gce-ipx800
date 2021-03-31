@@ -8,7 +8,7 @@ dist-name = "gce-ipx800"
 author = "Marc-Aurèle Brothier"
 author-email = "m@brothier.org"
 maintainer = "Marc-Aurèle Brothier"
-home-page = "https://github.com/marcaurele/py-ipx800"
+home-page = "https://github.com/marcaurele/gce-ipx800"
 description-file = "README.rst"
 keywords = "ipx800, GCE-Electronics, GCE, home-automation"
 requires = ["requests"]
@@ -26,7 +26,7 @@ classifiers = ["Topic :: Home Automation",
 
 [tool.black]
 target-version = ["py36", "py37", "py38", "py39"]
-line-length = 79
+line-length = 119
 
 [tool.coverage.report]
 exclude_lines = ["def __repr__"]
