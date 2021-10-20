@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "gce-ipx800"
 version = "0.4.0"
-description = "Python library to interact with the GCE Electronics IPX800 device"
+description = "Library to interact with the GCE Electronics IPX800 device"
 authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
 license = "Apache-2.0"
 readme = 'README.rst'
