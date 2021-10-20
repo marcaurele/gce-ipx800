@@ -1,18 +1,13 @@
-[build-system]
-requires = ["flit"]
-build-backend = "flit.buildapi"
-
-[tool.flit.metadata]
-module = "ipx800"
-dist-name = "gce-ipx800"
-author = "Marc-Aurèle Brothier"
-author-email = "m@brothier.org"
-maintainer = "Marc-Aurèle Brothier"
-home-page = "https://github.com/marcaurele/gce-ipx800"
-description-file = "README.rst"
-keywords = "ipx800, GCE-Electronics, GCE, home-automation"
-requires = ["requests"]
-requires-python = ">=3.6"
+[tool.poetry]
+name = "gce-ipx800"
+version = "0.4.0"
+description = "Python library to interact with the GCE Electronics IPX800 device"
+authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
+license = "Apache-2.0"
+readme = 'README.rst'
+repository = "https://github.com/marcaurele/gce-ipx800"
+homepage = "https://github.com/marcaurele/gce-ipx800"
+keywords = ['ipx800', 'GCE-Electronics', 'GCE', 'home-automation']
 classifiers = ["Topic :: Home Automation",
                "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
                "License :: OSI Approved :: Apache Software License",
@@ -23,6 +18,28 @@ classifiers = ["Topic :: Home Automation",
 	       "Programming Language :: Python :: 3.7",
 	       "Programming Language :: Python :: 3.8",
 	       "Programming Language :: Python :: 3.9"]
+packages = [
+    { include = "ipx800" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+flake8-import-order = "^0.18.1"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+coverage = "^6.0.2"
+codecov = "^2.1.12"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 target-version = ["py36", "py37", "py38", "py39"]

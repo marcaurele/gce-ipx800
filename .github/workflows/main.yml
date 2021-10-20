@@ -34,19 +34,19 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install pipenv
-      run: python -m pip install --upgrade pip pipenv
+    - name: Install poetry
+      run: python -m pip install --upgrade pip poetry
 
     - name: Install dependencies
-      run: pipenv install --dev
+      run: poetry install --dev
 
     - name: Lint with flake8
-      run: pipenv run flake8 ipx800/ tests/ --count --show-source --statistics
+      run: poetry run flake8 ipx800/ tests/ --count --show-source --statistics
 
     - name: Test with pytest
-      run: pipenv run pytest --cov=ipx800 tests/
+      run: poetry run pytest --cov=ipx800 tests/
 
     - name: Code coverage
-      run: pipenv run codecov --token=$token
+      run: poetry run codecov --token=$token
       env:
         token: ${{ secrets.CODECOV_TOKEN }}
