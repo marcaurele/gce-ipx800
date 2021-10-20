@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0 (not released)
+
+- move to poetry for packaging
+
 ## 0.4.0
 
 - add virtual inputs operations
