@@ -24,15 +24,15 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-requests = "^2.26.0"
+requests = "^2.26"
 
 [tool.poetry.dev-dependencies]
-flake8 = "^4.0.1"
-flake8-import-order = "^0.18.1"
-pytest = "^6.2.5"
-pytest-cov = "^3.0.0"
-coverage = {version = "^6.0.2", extras = ["toml"]}
-codecov = "^2.1.12"
+flake8 = "^4.0"
+flake8-import-order = "^0.18"
+pytest = "^6.2"
+pytest-cov = "^3.0"
+coverage = {version = "^6.0", extras = ["toml"]}
+codecov = "^2.1"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
