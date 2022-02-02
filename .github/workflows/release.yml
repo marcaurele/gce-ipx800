@@ -1,9 +1,10 @@
-name: Upload python package
+---
+name: Publish pypi package
 
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+**'
+      - 'v?[0-9]+.[0-9]+**'
 
 jobs:
   build:

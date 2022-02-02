@@ -1,3 +1,4 @@
+---
 name: Build status
 
 on:
@@ -38,7 +39,10 @@ jobs:
       run: python -m pip install --upgrade pip poetry
 
     - name: Install dependencies
-      run: poetry install
+      run: poetry install --no-interaction
+
+    - name: Check with Black
+      run: poetry run black --diff --check ipx800/ tests/
 
     - name: Lint with flake8
       run: poetry run flake8 ipx800/ tests/ --count --show-source --statistics
