@@ -44,7 +44,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 target-version = ["py36", "py37", "py38", "py39"]
-line-length = 119
+line-length = 79
 
 [tool.coverage.report]
 exclude_lines = ["def __repr__"]
