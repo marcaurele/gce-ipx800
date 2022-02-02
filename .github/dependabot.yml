@@ -11,6 +11,6 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 10
     commit-message:
-      prefix: "pipenv"
-      prefix-development: "pipenv dev"
+      prefix: "poetry"
+      prefix-development: "poetry dev"
       include: "scope"
