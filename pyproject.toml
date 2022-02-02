@@ -23,7 +23,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = ">=3.6.2"
 requests = "^2.26"
 
 [tool.poetry.dev-dependencies]
@@ -33,6 +33,7 @@ pytest = "^6.2"
 pytest-cov = "^3.0"
 coverage = {version = "^6.0", extras = ["toml"]}
 codecov = "^2.1"
+black = "^22.1.0"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
