@@ -222,5 +222,5 @@ class Counter(IPX800):
     def reset(self) -> None:
         """Reset the counter value to 0."""
         params = {f"SetC{self.id:02d}": 0}
-        response = self._request(params)
-        return response[f"C{self.id}"]
+        self._request(params)
+        return True

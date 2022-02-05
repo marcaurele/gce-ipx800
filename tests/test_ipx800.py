@@ -279,7 +279,7 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         assert ipx.counters[0].value == 15
-        assert ipx.counters[1].value == 0
+        assert ipx.counters[1].value == 2
 
     @patch("requests.get")
     def test_analog_counter_str(self, mock_request):
@@ -291,4 +291,17 @@ class IPX800Test(TestCase):
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(
             str(ipx.counters[0]), "[IPX800-counter: id=1, value=15]"
+        )
+
+    @patch("requests.get")
+    def test_analog_counter_reset(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getc.json"),
+            self._mock_response(json_file="tests/getc.json"),
+            self._mock_response(json_file="tests/setc.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(
+            ipx.counters[0].reset(), True
         )
