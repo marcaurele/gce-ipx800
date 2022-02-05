@@ -259,3 +259,36 @@ class IPX800Test(TestCase):
         self.assertEqual(sensor.as_xhtx3_tc5050, 23.540009018404906)
         self.assertEqual(sensor.as_xhtx3_ls100, 72.6448638)
         self.assertEqual(sensor.as_xhtx3_sh100, 90.66693616590432)
+
+    @patch("requests.get")
+    def test_analog_counters_length(self, mock_request):
+        mock_request.return_value = self._mock_response(
+            json_file="tests/getc.json"
+        )
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(len(ipx.counters), 16)
+
+    @patch("requests.get")
+    def test_analog_counters_value(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getc.json"),
+            self._mock_response(json_file="tests/getc.json"),
+            self._mock_response(json_file="tests/getc.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        assert ipx.counters[0].value == 15
+        assert ipx.counters[1].value == 0
+
+    @patch("requests.get")
+    def test_analog_counter_str(self, mock_request):
+        mock_request.side_effect = [
+            self._mock_response(json_file="tests/getc.json"),
+            self._mock_response(json_file="tests/getc.json"),
+        ]
+
+        ipx = ipx800("http://192.0.2.4")
+        self.assertEqual(
+            str(ipx.counters[0]), "[IPX800-counter: id=1, value=15]"
+        )
