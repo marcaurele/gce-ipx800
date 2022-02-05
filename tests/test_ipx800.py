@@ -302,6 +302,4 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        self.assertEqual(
-            ipx.counters[0].reset(), True
-        )
+        self.assertEqual(ipx.counters[0].reset(), True)
