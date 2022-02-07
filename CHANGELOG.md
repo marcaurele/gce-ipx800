@@ -3,6 +3,7 @@
 ## 0.5.0 (not released)
 
 - move to poetry for packaging
+- add counters operations
 
 ## 0.4.0
 

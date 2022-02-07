@@ -1,5 +1,3 @@
-# -*- coding: utf-8 *-*
-
 import collections
 import warnings
 
@@ -25,6 +23,7 @@ class IPX800:
         self.url = url
         self._api_url = f"{url}/api/xdevices.json"
         self.api_key = api_key
+        self.counters = GenericSlice(self, Counter, {"Get": "C"})
         self.relays = GenericSlice(self, Relay, {"Get": "R"})
         self.analogs = GenericSlice(self, Analog, {"Get": "A"})
         self.virtual_inputs = GenericSlice(self, VirtualInput, {"Get": "VI"})
@@ -198,3 +197,30 @@ class Analog(IPX800):
         XHT-X3 SH-100 humidity sensor.
         """
         return ((self.value * 0.00323) / 211.2 - 0.1515) / 0.00636
+
+
+class Counter(IPX800):
+    """Representing an IPX800 counter."""
+
+    def __init__(self, ipx, counter_id: int):
+        super().__init__(ipx.url, ipx.api_key)
+        self.id = counter_id
+
+    def __repr__(self) -> str:
+        return f"<ipx800.counter id={self.id}>"
+
+    def __str__(self) -> str:
+        return f"[IPX800-counter: id={self.id}, value={self.value}]"
+
+    @property
+    def value(self) -> int:
+        """Return the current counter value."""
+        params = {"Get": "C"}
+        response = self._request(params)
+        return response[f"C{self.id}"]
+
+    def reset(self) -> None:
+        """Reset the counter value to 0."""
+        params = {f"SetC{self.id:02d}": 0}
+        self._request(params)
+        return True
