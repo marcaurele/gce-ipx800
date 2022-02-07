@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.6.0 (not released)
+
 ## 0.5.0
 
 - move to poetry for packaging
