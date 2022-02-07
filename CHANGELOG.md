@@ -5,6 +5,7 @@
 - move to poetry for packaging
 - add counters operations
 - remove support for Python 3.6 and 3.7
+- add support for Python 3.10
 
 ## 0.4.0
 
