@@ -12,13 +12,20 @@ on:
 jobs:
   eclint:
     runs-on: ubuntu-latest
-    container: greut/eclint:latest
+    container:
+      image: registry.gitlab.com/greut/eclint:latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
 
+      - name: fix git
+        run: git config --global --add safe.directory "${GITHUB_WORKSPACE:-$(pwd)}"
+
+      - name: eclint version
+        run: eclint -version
+
       - name: linting based on .editorconfig
-        run: eclint
+        run: eclint -color=always
 
   build:
     runs-on: ubuntu-latest
