@@ -12,7 +12,9 @@ on:
 jobs:
   eclint:
     runs-on: ubuntu-latest
-    container: greut/eclint:latest
+    container:
+      image: greut/eclint:latest
+      options: --user 1000:1000  # Due to git dubious ownership change
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
