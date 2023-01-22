@@ -13,7 +13,7 @@ jobs:
   eclint:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/greut/eclint:latest
+      image: registry.gitlab.com/greut/eclint:latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
