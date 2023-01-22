@@ -9,7 +9,7 @@ GCE-IPX800
    :alt: Build Status
    :target: https://github.com/marcaurele/gce-ipx800/actions
 
-.. image:: https://codecov.io/gh/marcaurele/gce-ipx800/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/marcaurele/gce-ipx800/branch/main/graph/badge.svg
    :alt: Code coverage
    :target: https://codecov.io/gh/marcaurele/gce-ipx800
 
