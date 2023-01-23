@@ -30,7 +30,7 @@ flake8 = "^5.0"
 flake8-import-order = "^0.18"
 pytest = "^7.0"
 pytest-cov = "^4.0"
-coverage = {version = "^6.0", extras = ["toml"]}
+coverage = {version = "^7.0", extras = ["toml"]}
 codecov = "^2.1"
 black = "^22.1.0"
 
