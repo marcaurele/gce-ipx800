@@ -32,7 +32,7 @@ pytest = "^7.0"
 pytest-cov = "^4.0"
 coverage = {version = "^7.0", extras = ["toml"]}
 codecov = "^2.1"
-black = "^22.1.0"
+black = "^23.1.0"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
