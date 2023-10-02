@@ -16,7 +16,7 @@ jobs:
       image: registry.gitlab.com/greut/eclint:latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: fix git
         run: git config --global --add safe.directory "${GITHUB_WORKSPACE:-$(pwd)}"
@@ -39,7 +39,7 @@ jobs:
           - "3.11"
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
