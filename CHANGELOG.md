@@ -2,6 +2,16 @@
 
 ## 0.6.0 (not released)
 
+## 0.5.2
+
+- bump to fix missing release for `0.5.1`
+
+## 0.5.1
+
+- fix poetry lock file
+- improve CI automation
+- add support for Python 3.11
+
 ## 0.5.0
 
 - move to poetry for packaging
