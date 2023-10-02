@@ -28,8 +28,6 @@ python = "^3.8"
 requests = "^2.26"
 
 [tool.poetry.dev-dependencies]
-flake8 = "^5.0"
-flake8-import-order = "^0.18"
 pytest = "^7.0"
 pytest-cov = "^4.0"
 coverage = {version = "^7.0", extras = ["toml"]}
@@ -38,6 +36,9 @@ black = "^23.1.0"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.292"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
