@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gce-ipx800"
-version = "0.6.dev0"
+version = "0.5.2"
 description = "Library to interact with the GCE Electronics IPX800 device"
 authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
 license = "Apache-2.0"
