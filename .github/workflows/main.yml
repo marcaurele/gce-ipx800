@@ -55,8 +55,8 @@ jobs:
     - name: Check with Black
       run: poetry run black --diff --check ipx800/ tests/
 
-    - name: Lint with flake8
-      run: poetry run ruff --show-files ipx800/ tests/ --count --show-source --statistics
+    - name: Lint with ruff
+      run: poetry run ruff --show-files --show-fixes --show-source ipx800/ tests/
 
     - name: Test with pytest
       run: poetry run pytest --cov=ipx800 tests/
