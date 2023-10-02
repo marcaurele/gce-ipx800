@@ -36,6 +36,7 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
+          - "3.11"
 
     steps:
     - uses: actions/checkout@v2
@@ -54,8 +55,8 @@ jobs:
     - name: Check with Black
       run: poetry run black --diff --check ipx800/ tests/
 
-    - name: Lint with flake8
-      run: poetry run flake8 ipx800/ tests/ --count --show-source --statistics
+    - name: Lint with ruff
+      run: poetry run ruff --show-files --show-fixes --show-source ipx800/ tests/
 
     - name: Test with pytest
       run: poetry run pytest --cov=ipx800 tests/

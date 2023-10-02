@@ -5,12 +5,16 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values
+  - package-ecosystem: pip # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: monthly
     open-pull-requests-limit: 10
     commit-message:
-      prefix: "poetry"
-      prefix-development: "poetry dev"
-      include: "scope"
+      prefix: poetry
+      prefix-development: poetry dev
+      include: scope
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
