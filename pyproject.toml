@@ -27,17 +27,15 @@ packages = [
 python = "^3.8"
 requests = "^2.26"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
+
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
 pytest-cov = "^4.0"
 coverage = {version = "^7.0", extras = ["toml"]}
 codecov = "^2.1"
 black = "^23.1.0"
-
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
-
-[tool.poetry.group.dev.dependencies]
 ruff = "^0.0.292"
 
 [build-system]
