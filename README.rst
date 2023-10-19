@@ -64,7 +64,7 @@ Usage
 
     r4.off()
 
-    r4.togle()
+    r4.toggle()
 
     len(ipx.relays)  # => 56
 
