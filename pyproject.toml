@@ -35,7 +35,7 @@ pytest = ">=7,<9"
 pytest-cov = "^4.0"
 coverage = {version = "^7.0", extras = ["toml"]}
 codecov = "^2.1"
-black = "^23.1.0"
+black = ">=23.1,<25.0"
 ruff = ">=0.0.292,<0.1.10"
 
 [build-system]
