@@ -26,6 +26,7 @@ class IPX800:
         self.counters = GenericSlice(self, Counter, {"Get": "C"})
         self.relays = GenericSlice(self, Relay, {"Get": "R"})
         self.analogs = GenericSlice(self, Analog, {"Get": "A"})
+        self.THLextensions = GenericSlice(self, THLExtension, {"Get": "XTHL"})
         self.virtual_inputs = GenericSlice(self, VirtualInput, {"Get": "VI"})
         self.virtual_outputs = GenericSlice(self, VirtualOutput, {"Get": "VO"})
 
@@ -224,3 +225,37 @@ class Counter(IPX800):
         params = {f"SetC{self.id:02d}": 0}
         self._request(params)
         return True
+    
+class THLExtension(IPX800):
+    """Representing an IPX800 Extension."""
+
+    def __init__(self, ipx, extension_id: int):
+        super().__init__(ipx.url, ipx.api_key)
+        self.id = extension_id
+
+    def __repr__(self) -> str:
+        return f"<ipx800.extension id={self.id}>"
+
+    def __str__(self) -> str:
+        return f"[IPX800-extension: id={self.id}, value={self.value}]"
+
+    @property
+    def temperature(self) -> int:
+        """Return the temperature value."""
+        params = {"Get": "XTHL"}
+        response = self._request(params)
+        return response[f"THL{self.id}-TEMP"]
+    
+    @property
+    def humidity(self) -> int:
+        """Return the humidity value."""
+        params = {"Get": "XTHL"}
+        response = self._request(params)
+        return response[f"THL{self.id}-HUM"]
+    
+    @property
+    def luminosity(self) -> int:
+        """Return the luminosity value."""
+        params = {"Get": "XTHL"}
+        response = self._request(params)
+        return response[f"THL{self.id}-LUM"]
