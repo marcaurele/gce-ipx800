@@ -37,6 +37,7 @@ IPX800 features implemented
   - virtual outputs (``ipx.virtual_outputs[]``)
 
 * Counters (``ipx.counters[]``)
+* THL extensions (``ipx.THLextensions[]``)
 
 Installation
 ------------
@@ -67,6 +68,12 @@ Usage
     r4.toggle()
 
     len(ipx.relays)  # => 56
+
+    THL0 = ipx.THLextensions[0]
+
+    THL0_humidity=THL0.humidity
+    THL0_luminosity=THL0.luminosity
+    THL0_temperature=THL0.temperature
 
 Links
 -----
