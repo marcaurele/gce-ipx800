@@ -32,7 +32,7 @@ requests = "^2.26"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=7,<9"
-pytest-cov = "^4.0"
+pytest-cov = ">=4,<6"
 coverage = {version = "^7.0", extras = ["toml"]}
 codecov = "^2.1"
 black = ">=23.1,<25.0"
