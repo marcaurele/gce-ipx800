@@ -2,6 +2,8 @@
 
 ## 0.6.0 (not released)
 
+- add support for Python 3.12
+
 ## 0.5.2
 
 - bump to fix missing release for `0.5.1`
