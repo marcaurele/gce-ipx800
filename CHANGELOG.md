@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.0 (not released)
+## 0.6.0
 
 - add support for Python 3.12
 
