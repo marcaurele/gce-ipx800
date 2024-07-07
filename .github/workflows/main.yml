@@ -57,7 +57,7 @@ jobs:
       run: poetry run black --diff --check ipx800/ tests/
 
     - name: Lint with ruff
-      run: poetry run ruff check --show-files --show-fixes --show-source ipx800/ tests/
+      run: poetry run ruff check --show-files --show-fixes ipx800/ tests/
 
     - name: Test with pytest
       run: poetry run pytest --cov=ipx800 tests/
