@@ -1,0 +1,41 @@
+---
+version: '3'
+
+tasks:
+  black:
+    desc: Run black
+    cmds:
+    - poetry run black ipx800/ tests/
+
+  build:
+    desc: Poetry build
+    cmds:
+    - poetry build
+
+  mypy:
+    desc: Run mypy checker
+    cmds:
+    - poetry run mypy ipx800/ tests/
+
+  pylint:
+    desc: Run pylint linter
+    cmds:
+    - poetry run pylint ipx800/ tests/
+
+  ruff:
+    desc: Run ruff checker
+    cmds:
+    - poetry run ruff check ipx800/ tests/
+
+  test:
+    desc: Run tests with pytest
+    cmds:
+    - poetry run ruff check ipx800/ tests/
+
+  validate:
+    desc: Run all validators
+    cmds:
+    - task: black
+    # - task: mypy
+    # - task: pylint
+    - task: ruff
