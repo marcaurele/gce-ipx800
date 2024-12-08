@@ -101,13 +101,13 @@ class BaseSwitch(IPX800):
 
     def off(self) -> bool:
         """Turn off and return True if it was successful."""
-        params = {"Clear{self._code}": self.id}
+        params = {f"Clear{self._code}": self.id}
         self._request(params)
         return True
 
     def toggle(self) -> bool:
         """Toggle and return True if it was successful."""
-        params = {"Toggle{self._code}": self.id}
+        params = {f"Toggle{self._code}": self.id}
         self._request(params)
         return True
 
