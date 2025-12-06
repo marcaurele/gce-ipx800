@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.1]
+
+- *(python)* Remove 3.8 and add 3.13 support (#113)
+
 ## [0.7.0]
 
 ### 🐛 Bug Fixes
