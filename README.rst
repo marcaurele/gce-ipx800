@@ -24,7 +24,7 @@ GCE-IPX800
 A python library to control a GCE-Electronics IPX800 V4 device through its API.
 
 * Python 3.9+ support
-* Apache License
+* AGPL-3.0 license
 
 IPX800 features implemented
 ---------------------------
@@ -76,4 +76,4 @@ Links
 Licence
 -------
 
-Licensed under Apache License Version 2.0
+Licensed under GNU Affero General Public License v3.0
