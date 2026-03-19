@@ -38,6 +38,7 @@ jobs:
           - "3.11"
           - "3.12"
           - "3.13"
+          - "3.14"
 
     steps:
     - uses: actions/checkout@v6
@@ -48,21 +49,18 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Install poetry
-      run: python -m pip install --upgrade pip poetry
+      run: python -m pip install --upgrade pip uv
 
     - name: Install dependencies
-      run: poetry install --no-interaction
-
-    - name: Check with Black
-      run: poetry run black --diff --check ipx800/ tests/
+      run: uv sync
 
     - name: Lint with ruff
-      run: poetry run ruff check --show-files --show-fixes ipx800/ tests/
+      run: uv run ruff check --show-files --show-fixes ipx800/ tests/
 
     - name: Test with pytest
-      run: poetry run pytest --cov=ipx800 tests/
+      run: uv run pytest --cov=ipx800 tests/
 
     - name: Code coverage
-      run: poetry run codecov --token=$token
+      run: uv run codecov --token=$token
       env:
         token: ${{ secrets.CODECOV_TOKEN }}
