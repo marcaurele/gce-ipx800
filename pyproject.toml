@@ -1,47 +1,58 @@
-[tool.poetry]
+[project]
 name = "gce-ipx800"
 version = "0.7.1"
 description = "Library to interact with the GCE Electronics IPX800 device"
-authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
+authors = [{ name = "Marc-Aurèle Brothier", email = "m@brothier.org" }]
+requires-python = ">=3.9,<4"
+readme = "README.rst"
 license = "AGPL-3.0-or-later"
-readme = 'README.rst'
-repository = "https://github.com/marcaurele/gce-ipx800"
-homepage = "https://github.com/marcaurele/gce-ipx800"
-keywords = ['ipx800', 'GCE-Electronics', 'GCE', 'home-automation']
-classifiers = ["Topic :: Home Automation",
-               "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
-               "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
-               "Operating System :: OS Independent",
-	       "Programming Language :: Python",
-	       "Programming Language :: Python :: 3",
-	       "Programming Language :: Python :: 3.9",
-	       "Programming Language :: Python :: 3.10",
-	       "Programming Language :: Python :: 3.11",
-	       "Programming Language :: Python :: 3.12",
-	       "Programming Language :: Python :: 3.13",
+keywords = [
+    "ipx800",
+    "GCE-Electronics",
+    "GCE",
+    "home-automation",
 ]
-packages = [
-    { include = "ipx800" },
+classifiers = [
+    "Topic :: Home Automation",
+    "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
+dependencies = ["requests>=2.26,<3"]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-requests = "^2.26"
-
-[tool.poetry.urls]
+[project.urls]
+Homepage = "https://github.com/marcaurele/gce-ipx800"
+Repository = "https://github.com/marcaurele/gce-ipx800"
 "Bug Tracker" = "https://github.com/marcaurele/gce-ipx800/issues"
 
-[tool.poetry.group.dev.dependencies]
-pytest = ">=7,<9"
-pytest-cov = ">=4,<8"
-coverage = {version = "^7.0", extras = ["toml"]}
-codecov = "^2.1"
-black = ">=23.1,<26.0"
-ruff = ">=0.5.0,<0.15.5"
+[dependency-groups]
+dev = [
+    "pytest>=7,<9",
+    "pytest-cov>=4,<8",
+    "coverage[toml]>=7.0,<8",
+    "codecov>=2.1,<3",
+    "black>=23.1,<26.0",
+    "ruff>=0.5.0,<0.15.5",
+]
+
+[tool.uv]
+default-groups = "all"
+
+[tool.uv.build-backend]
+module-name = ["ipx800"]
+module-root = ""
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.10.6,<0.11.0"]
+build-backend = "uv_build"
 
 [tool.black]
 target-version = ["py39", "py310", "py311", "py312", "py313"]
