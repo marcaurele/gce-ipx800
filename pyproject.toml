@@ -39,7 +39,6 @@ dev = [
     "pytest-cov>=4,<8",
     "coverage[toml]>=7.0,<8",
     "codecov>=2.1,<3",
-    "black>=23.1,<26.0",
     "ruff>=0.5.0,<0.15.5",
 ]
 
@@ -54,8 +53,8 @@ module-root = ""
 requires = ["uv_build>=0.10.6,<0.11.0"]
 build-backend = "uv_build"
 
-[tool.black]
-target-version = ["py39", "py310", "py311", "py312", "py313"]
+[tool.ruff]
+include = ["pyproject.toml", "ipx800/**/*.py", "tests/**/*.py"]
 line-length = 79
 
 [tool.coverage.report]

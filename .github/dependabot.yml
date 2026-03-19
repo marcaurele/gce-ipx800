@@ -11,8 +11,8 @@ updates:
       interval: monthly
     open-pull-requests-limit: 10
     commit-message:
-      prefix: poetry
-      prefix-development: poetry dev
+      prefix: uv
+      prefix-development: uv dev
       include: scope
   - package-ecosystem: github-actions
     directory: /
