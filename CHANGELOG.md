@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.2] - 2026-03-20
+
+### 🚀 Features
+
+- Change license to AGPL 3.0 (#149)
+- Migrate to uv
+
+### ⚙️ Miscellaneous Tasks
+
+- Remove black
+
 ## [0.7.1]
 
 - *(python)* Remove 3.8 and add 3.13 support (#113)
