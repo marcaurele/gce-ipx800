@@ -13,7 +13,8 @@ jobs:
       name: pypi
     permissions:
       id-token: write
-      contents: read
+      contents: write
+      release: write
     steps:
     - uses: actions/checkout@v6
 
@@ -40,4 +41,4 @@ jobs:
     - name: Publish GH release
       run: gh release create --generate-notes "$GITHUB_REF_NAME"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
