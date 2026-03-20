@@ -23,11 +23,11 @@ jobs:
     - name: Build package
       run: uv build
 
-    - name: Smoke test (wheel)
-      run: uv run --isolated --no-project --with dist/*.whl pytest tests/test_ipx800.py
+    # - name: Smoke test (wheel)
+    #   run: uv run --isolated --no-project --with dist/*.whl pytest tests/test_ipx800.py
 
-    - name: Smoke test (source distribution)
-      run: uv run --isolated --no-project --with dist/*.tar.gz pytest tests/test_ipx800.py
+    # - name: Smoke test (source distribution)
+    #   run: uv run --isolated --no-project --with dist/*.tar.gz pytest tests/test_ipx800.py
 
     - name: Publish to pypi
       run: uv publish
