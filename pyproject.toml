@@ -47,14 +47,13 @@ default-groups = "all"
 
 [tool.uv.build-backend]
 module-name = ["ipx800"]
-module-root = ""
 
 [build-system]
 requires = ["uv_build>=0.10.6,<0.11.0"]
 build-backend = "uv_build"
 
 [tool.ruff]
-include = ["pyproject.toml", "ipx800/**/*.py", "tests/**/*.py"]
+include = ["pyproject.toml", "src/ipx800/**/*.py", "tests/**/*.py"]
 line-length = 79
 
 [tool.coverage.report]
