@@ -1,6 +1,6 @@
 [project]
 name = "gce-ipx800"
-version = "0.7.2"
+version = "0.8.0"
 description = "Library to interact with the GCE Electronics IPX800 device"
 authors = [{ name = "Marc-Aurèle Brothier", email = "m@brothier.org" }]
 requires-python = ">=3.9,<4"
@@ -15,7 +15,6 @@ keywords = [
 classifiers = [
     "Topic :: Home Automation",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
-    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -45,17 +44,9 @@ dev = [
 [tool.uv]
 default-groups = "all"
 
-[tool.uv.build-backend]
-module-name = ["ipx800"]
-module-root = ""
-
 [build-system]
-requires = ["uv_build>=0.10.6,<0.11.0"]
-build-backend = "uv_build"
-
-[tool.ruff]
-include = ["pyproject.toml", "ipx800/**/*.py", "tests/**/*.py"]
-line-length = 79
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.coverage.report]
 exclude_lines = ["def __repr__"]

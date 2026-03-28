@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.0] - 2026-03-28
+
+### Breaking Changes 🛠
+
+- Rename module to packge name (`ipx800` => `gce_ipx800`)
+
+### ⚙️ Miscellaneous Tasks
+
+- Follow standard ruff rules
+
 ## [0.7.2] - 2026-03-20
 
 ### 🚀 Features

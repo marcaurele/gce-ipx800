@@ -30,9 +30,7 @@ class IPX800:
         self.virtual_outputs = GenericSlice(self, VirtualOutput, {"Get": "VO"})
 
     def _request(self, params):
-        # (bug) IPX4, key must be the first parameter otherwise some
-        # calls don't return.
-        # params.update({"key": self.api_key})
+        # (bug) IPX4, key must be the first parameter otherwise some calls don't return.
         params_fix = {"key": self.api_key}
         params_fix.update(params)
         r = requests.get(self._api_url, params=params_fix, timeout=2)

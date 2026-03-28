@@ -5,31 +5,40 @@ tasks:
   build:
     desc: Build package
     cmds:
-    - uv build
+    - uv build --clear
+    - uv run --isolated --no-project --with dist/*.whl --with pytest pytest
+    - uv run --isolated --no-project --with dist/*.tar.gz --with pytest pytest
 
   mypy:
     desc: Run mypy checker
     cmds:
-    - uv run mypy ipx800/ tests/
+    - uv run mypy
 
   pylint:
     desc: Run pylint linter
     cmds:
-    - uv run pylint ipx800/ tests/
+    - uv run pylint
 
-  ruff:
+  check:
     desc: Run ruff checker
     cmds:
-    - uv run ruff check ipx800/ tests/
+    - uv run ruff check --show-files
+
+  format:
+    desc: Run ruff formatter
+    cmds:
+    - uv run ruff format
 
   test:
     desc: Run tests with pytest
     cmds:
-    - uv run ruff check ipx800/ tests/
+    - uv run pytest
 
   validate:
     desc: Run all validators
     cmds:
     # - task: mypy
     # - task: pylint
-    - task: ruff
+    - task: check
+    - task: format
+    - task: test
