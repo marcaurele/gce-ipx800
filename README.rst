@@ -52,7 +52,7 @@ Usage
 
 .. code-block:: python
 
-    from ipx800 import ipx800
+    from gce_ipx800 import ipx800
 
     ipx = ipx800("http://your-device-ip", "apikey")
 
