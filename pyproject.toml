@@ -15,7 +15,6 @@ keywords = [
 classifiers = [
     "Topic :: Home Automation",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
-    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -45,15 +44,12 @@ dev = [
 [tool.uv]
 default-groups = "all"
 
-[tool.uv.build-backend]
-module-name = ["ipx800"]
-
 [build-system]
-requires = ["uv_build>=0.10.6,<0.11.0"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
-include = ["pyproject.toml", "src/ipx800/**/*.py", "tests/**/*.py"]
+include = ["pyproject.toml", "src/gce_ipx800/**/*.py", "tests/**/*.py"]
 line-length = 79
 
 [tool.coverage.report]

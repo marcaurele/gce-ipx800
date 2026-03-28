@@ -2,7 +2,7 @@ import json
 from unittest import TestCase
 from unittest.mock import Mock, call, patch
 
-from ipx800 import ApiError, ipx800
+from gce_ipx800 import ApiError, ipx800
 
 
 class IPX800Test(TestCase):
