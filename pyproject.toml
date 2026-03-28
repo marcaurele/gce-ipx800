@@ -48,9 +48,5 @@ default-groups = "all"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.ruff]
-include = ["pyproject.toml", "src/gce_ipx800/**/*.py", "tests/**/*.py"]
-line-length = 79
-
 [tool.coverage.report]
 exclude_lines = ["def __repr__"]

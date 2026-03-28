@@ -31,9 +31,7 @@ class IPX800Test(TestCase):
 
     @patch("requests.get")
     def test_invalid_relay(self, mock_request):
-        mock_request.return_value = self._mock_response(
-            json_file="tests/error.json"
-        )
+        mock_request.return_value = self._mock_response(json_file="tests/error.json")
 
         ipx = ipx800("http://192.0.2.4")
         with self.assertRaises(ApiError):
@@ -50,9 +48,7 @@ class IPX800Test(TestCase):
 
     @patch("requests.get")
     def test_relay_length(self, mock_request):
-        mock_request.return_value = self._mock_response(
-            json_file="tests/getr.json"
-        )
+        mock_request.return_value = self._mock_response(json_file="tests/getr.json")
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(len(ipx.relays), 56)
@@ -119,15 +115,11 @@ class IPX800Test(TestCase):
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(str(ipx.relays[5]), "[IPX800-relay: id=6, status=On]")
-        self.assertEqual(
-            str(ipx.relays[2]), "[IPX800-relay: id=3, status=Off]"
-        )
+        self.assertEqual(str(ipx.relays[2]), "[IPX800-relay: id=3, status=Off]")
 
     @patch("requests.get")
     def test_relay_error(self, mock_request):
-        mock_request.return_value = self._mock_response(
-            json_file="tests/error.json"
-        )
+        mock_request.return_value = self._mock_response(json_file="tests/error.json")
 
         ipx = ipx800("http://192.0.2.4")
         with self.assertRaises(ApiError):
@@ -147,8 +139,7 @@ class IPX800Test(TestCase):
     @patch("requests.get")
     def test_virtuals_iteration(self, mock_request):
         mock_request.side_effect = [
-            self._mock_response(json_file="tests/getvi.json")
-            for i in range(128)
+            self._mock_response(json_file="tests/getvi.json") for i in range(128)
         ]
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(len([r for r in ipx.virtual_inputs]), 128)
@@ -206,9 +197,7 @@ class IPX800Test(TestCase):
 
     @patch("requests.get")
     def test_analog_sensors_length(self, mock_request):
-        mock_request.return_value = self._mock_response(
-            json_file="tests/geta.json"
-        )
+        mock_request.return_value = self._mock_response(json_file="tests/geta.json")
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(len(ipx.analogs), 4)
@@ -262,9 +251,7 @@ class IPX800Test(TestCase):
 
     @patch("requests.get")
     def test_analog_counters_length(self, mock_request):
-        mock_request.return_value = self._mock_response(
-            json_file="tests/getc.json"
-        )
+        mock_request.return_value = self._mock_response(json_file="tests/getc.json")
 
         ipx = ipx800("http://192.0.2.4")
         self.assertEqual(len(ipx.counters), 16)
@@ -289,9 +276,7 @@ class IPX800Test(TestCase):
         ]
 
         ipx = ipx800("http://192.0.2.4")
-        self.assertEqual(
-            str(ipx.counters[0]), "[IPX800-counter: id=1, value=15]"
-        )
+        self.assertEqual(str(ipx.counters[0]), "[IPX800-counter: id=1, value=15]")
 
     @patch("requests.get")
     def test_analog_counter_reset(self, mock_request):
