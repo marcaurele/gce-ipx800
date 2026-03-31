@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.9.0] - _Unreleased_
+## [0.9.0] - 2026-03-31
 
 ### ⚙️ Miscellaneous Tasks
 
 - Drop support for Python 3.9
+- Improve CI to verify wheel and source packages with tests
 
 ## [0.8.0] - 2026-03-28
 
