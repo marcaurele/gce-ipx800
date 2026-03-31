@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.0] - _Unreleased_
+
+### ⚙️ Miscellaneous Tasks
+
+- Drop support for Python 3.9
+
 ## [0.8.0] - 2026-03-28
 
 ### Breaking Changes 🛠
